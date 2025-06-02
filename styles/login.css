@@ -1,0 +1,76 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+body {
+  background-color: #d6e8f9;
+}
+
+main {
+  margin-top: 2rem;
+}
+
+section {
+  position: absolute;
+}
+
+.login-box {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 10px;
+  border: 1px solid #ffffff;
+  padding: 8px;
+  width: 50vmin;
+  height: 50vmin;
+}
+
+form {
+  margin-top: 16px;
+}
+
+input {
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  padding: 8px;
+  height: 20%;
+  margin-top: 1rem;
+}
+
+input:focus {
+  outline: none;
+  border-color: #8dddce;
+}
+
+button {
+  border: none;
+  background-color: #6fc2e2;
+  color: white;
+  padding: 8px 16px;
+  margin-top: 0.5em;
+  border-radius: 2px;
+  font-weight: 300;
+}
+
+.input-form:not(.btn) {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centers the label+input pair in its parent */
+  margin: 16px auto;
+  width: 80%; /* relative to parent container (main or login box) */
+  max-width: 200px; /* limits width so it doesn’t get too wide */
+}
+
+.input-form:not(.btn) label {
+  align-self: flex-start; /* label aligns with input */
+  text-align: left;
+  width: 100%;
+}
+
+.input-form:not(.btn) input {
+  width: 100%; /* fill the container width */
+}
