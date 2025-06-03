@@ -56,7 +56,11 @@ button {
   font-weight: 300;
 }
 
-.input-form:not(.btn) {
+button:hover {
+  cursor: pointer;
+}
+
+.input-form:not(button) {
   display: flex;
   flex-direction: column;
   align-items: center; /* centers the label+input pair in its parent */
@@ -65,12 +69,12 @@ button {
   max-width: 200px; /* limits width so it doesn’t get too wide */
 }
 
-.input-form:not(.btn) label {
+.input-form:not(button) label {
   align-self: flex-start; /* label aligns with input */
   text-align: left;
   width: 100%;
 }
 
-.input-form:not(.btn) input {
+.input-form:not(button) input {
   width: 100%; /* fill the container width */
 }

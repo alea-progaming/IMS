@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.header {
+  width: 100%;
+  height: 20px;
+  background: #6fc2e2;
+}
+
+.banner {
+  background-image: url("../assets/img/inventory_background_full.jpg");
+  background-size: cover;
+  background-color: #8dddce;
+  padding: 100px 0;
+}
+
+.heroContainer {
+  width: 100%;
+  max-width: 900px;
+  margin: 0px auto;
+}
+
+.heroHeader h1 {
+  font-size: 80px;
+  color: white;
+}
+
+.heroHeader p {
+  font-size: 20px;
+  text-transform: uppercase;
+  color: white;
+}
