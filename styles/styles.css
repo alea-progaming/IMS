@@ -331,6 +331,11 @@ footer > .homepageContainer a:hover {
   flex-direction: row;
 }
 
+#sidebar,
+#dashboardContentContainer {
+  transition: all 0.3s ease;
+}
+
 .sidebar {
   width: 25%;
   height: 100vh;
@@ -373,6 +378,12 @@ footer > .homepageContainer a:hover {
 }
 
 .sidebarMenus li a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: all 0.3s ease;
   text-decoration: none;
   color: white;
 }
@@ -389,12 +400,22 @@ footer > .homepageContainer a:hover {
 .sidebarList .active {
   background-color: #3172ff;
 }
-.sidebarList i {
-  margin-right: 0.5em;
-  font-size: 1.25em;
+.sidebarList li a i {
+  flex-shrink: 0;
+  font-size: 18px;
 }
 
-.dasboardContentContainer {
+/* Hide the span when sidebar is shrunk */
+.sidebar.shrink .sidebarList li a span {
+  display: none;
+}
+
+.sidebar.shrink .sidebarList li a {
+  justify-content: center;
+  padding: 5px;
+}
+
+.dashboardContentContainer {
   width: 75%;
   height: 100vh;
   display: flex;

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IMS | Login</title>
-    <link rel="stylesheet" href="../styles/styles.css" />
+    <link rel="stylesheet" href="./styles/styles.css" />
   </head>
   <body id="login">
     <center>
@@ -13,7 +13,7 @@
         <h2>Inventory Management System</h2>
         <section class="login-box">
           <h3>LOG IN</h3>
-          <form action="dashboard.html" novalidate>
+          <form action="index.php" novalidate>
             <div class="input-form">
               <label for="username">Username</label>
               <input type="email" name="username" id="username" />
