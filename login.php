@@ -1,3 +1,20 @@
+<?php 
+include("database/connection.php");
+
+if($_POST) {
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+}
+
+$query = 'SELECT * FROM users WHERE users.email = "'.$username.'" AND users.password = "'.$password.'"';
+$stmt = $conn->prepare($query);
+$result = $stmt->execute();
+
+var_dump($result);
+die;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,7 +30,7 @@
         <h2>Inventory Management System</h2>
         <section class="login-box">
           <h3>LOG IN</h3>
-          <form action="index.php" novalidate>
+          <form action="login.php" method="POST" novalidate>
             <div class="input-form">
               <label for="username">Username</label>
               <input type="email" name="username" id="username" />

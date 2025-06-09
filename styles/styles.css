@@ -5,7 +5,11 @@
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
+/* LOGIN */
+
 body#login {
+  background-image: url("../assets/img/login_background.jpg");
+  background-size: cover;
   background-color: #6fc2e2;
 }
 
