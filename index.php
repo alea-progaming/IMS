@@ -12,7 +12,7 @@
   </head>
   <body>
     <div class="header">
-      <div class="homepageContainer"><a href="login.html">Login</a></div>
+      <div class="homepageContainer"><a href="login.php">Login</a></div>
     </div>
     <section class="banner">
       <div class="homepageContainer">
