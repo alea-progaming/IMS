@@ -456,3 +456,11 @@ footer > .homepageContainer a:hover {
   width: 100%;
   border-radius: 10px;
 }
+
+.errorMessage p {
+  background: #fff;
+  text-align: center;
+  color: red;
+  font-size: 20px;
+  padding: 11px;
+}

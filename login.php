@@ -1,34 +1,33 @@
-<?php 
-include("database/connection.php"); // connects using PDO
+<?php
 
+session_start();
+$err_msg = '';
 if ($_POST) {
+  include("database/connection.php"); // connects using PDO
     $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
-    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    $password = $_POST['password'];
+    // $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-    // Test query
-    $query = 'SELECT * FROM users WHERE email = "'.$email.'" AND password = "'.$password.'"';
-
+    if (!$email || !$password) {
+      $err_msg = "Please input a valid email and password";
+    } else {
+      // Test query
+    $query = 'SELECT * FROM users WHERE email = "'.$email.'" AND password = "'.$password.'" LIMIT 1';
+      // Prepare statement securely
     $stmt = $conn->prepare($query);
-    $result = $stmt->execute(['email'=>$email]);
+    $stmt->execute();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    var_dump($stmt->rowCount());
-    die();
-
-    // try {
-    //     $stmt = $conn->query($query); // use query() for basic testing (unsafe, but fine for local testing)
-    //     $results = $stmt->fetchAll(PDO::FETCH_ASSOC); // fetch data as associative array
-
-    //     if (count($results) > 0) {
-    //         echo "✅ Found user(s):<br>";
-    //         foreach ($results as $row) {
-    //             echo "🧑‍💻 Email: " . $row['email'] . "<br>";
-    //         }
-    //     } else {
-    //         echo "❌ No matching user found.";
-    //     }
-    // } catch (PDOException $e) {
-    //     echo "Database error: " . $e->getMessage();
-    // }
+    if ($user) {
+            if ($password == $user['password']) {
+                $err_msg = "✅ Login successful!";
+            } else {
+                $err_msg = "Incorrect email or password.";
+            }
+        } else {
+            $err_msg = "Incorrect email or passwordaaa.";
+        }
+    }
 }
 ?>
 
@@ -42,7 +41,13 @@ if ($_POST) {
   </head>
   <body id="login">
     <center>
+      <?php if (!empty($err_msg)) : ?>
+      <div class="errorMessage">
+        <p><strong>Error:</strong> <?= htmlspecialchars($err_msg) ?></p>
+      </div>
+    <?php endif ?>
       <main>
+        
         <h1>IMS</h1>
         <h2>Inventory Management System</h2>
         <section class="login-box">
