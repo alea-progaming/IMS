@@ -28,36 +28,33 @@
         <?php include('components/topnav.php')?>
         
         <div class="dashboardContent">
-          <div class="contentMain"></div>
+          <div class="contentMain">
+            <div class="userFormContainer">
+              <form action="database/user-add.php" method="POST" class="appForm">
+                <div class="appFormDiv">
+                  <label for="fName">First Name</label>
+                  <input type="text" class="formInput" name="fName" id="fName">
+                </div>
+                <div class="appFormDiv">
+                  <label for="lName">Last Name</label>
+                  <input type="text" class="formInput" name="lName" id="lName">
+                </div>
+                <div class="appFormDiv">
+                  <label for="email">Email</label>
+                  <input type="text" class="formInput" name="email" id="email">
+                </div>
+                <div class="appFormDiv">
+                  <label for="pass">Password</label>
+                  <input type="password" class="formInput" name="pass" id="pass">
+                </div>
+                <input type="hidden" name="table" value="users">
+                <button type="submit"><i class="fa fa-plus"></i>Add user</button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const toggleBtn = document.getElementById("toggleBtn");
-        const sidebar = document.getElementById("sidebar");
-        const dashboardContentContainer = document.getElementById(
-          "dashboardContentContainer"
-        );
-
-        let isShrunk = false;
-
-        toggleBtn.addEventListener("click", (event) => {
-        event.preventDefault();
-        isShrunk = !isShrunk;
-
-        if (isShrunk) {
-          sidebar.classList.add("shrink");
-          sidebar.style.width = "10%";
-          dashboardContentContainer.style.width = "90%";
-        } else {
-          sidebar.classList.remove("shrink");
-          sidebar.style.width = "20%";
-          dashboardContentContainer.style.width = "80%";
-        }
-        });
-
-      });
-    </script>
+    <script src="js/sidebarToggle.js"></script>
   </body>
 </html>
