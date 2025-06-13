@@ -21,9 +21,10 @@
   <body>
     <div id="dashboardMainContainer">
       <!-- // * Sidebar -->
-       <?php include('components/sidebar.php')?>
-      </div>
-      <div class="dashboardContentContainer" id="dashboardContentContainer">
+      <?php include('components/sidebar.php')?>
+    </div>
+    <div class="dashboardContentContainer" id="dashboardContentContainer">
+        <!-- // * Top Nav -->
         <?php include('components/topnav.php')?>
         
         <div class="dashboardContent">

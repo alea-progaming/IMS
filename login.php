@@ -1,33 +1,41 @@
 <?php
-
 session_start();
+if(isset($_SESSION['user'])) header('Location: admin.php');
+
 $err_msg = '';
+
 if ($_POST) {
   include("database/connection.php"); // connects using PDO
     $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
     $password = $_POST['password'];
     // $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-    if (!$email || !$password) {
-      $err_msg = "Please input a valid email and password";
-    } else {
-      // Test query
-    $query = 'SELECT * FROM users WHERE email = "'.$email.'" AND password = "'.$password.'" LIMIT 1';
       // Prepare statement securely
-    $stmt = $conn->prepare($query);
+    $stmt = $conn->prepare("SELECT * FROM users");
     $stmt->execute();
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-    if ($user) {
-            if ($password == $user['password']) {
-                $err_msg = "✅ Login successful!";
-            } else {
-                $err_msg = "Incorrect email or password.";
-            }
-        } else {
-            $err_msg = "Incorrect email or passwordaaa.";
-        }
+    $users = $stmt->fetchAll();
+
+    $user_exist = false;
+    
+    foreach ($users as $user) {
+      $user_pass = $user['password'];
+      if($password == $user_pass) {
+        $user_exist = true;
+        $_SESSION['user'] = $user;
+        break;
+      }
     }
+    
+    if ($user_exist) {
+      header('Location: admin.php');
+      exit;
+    } else {
+      $err_msg = "Please make sure that the email and password are correct.";
+    } 
+      
+
 }
 ?>
 
