@@ -10,7 +10,7 @@ if ($_POST) {
     $password = $_POST['password'];
     // $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-      // Prepare statement securely
+      // ! Prepare statement securely
     $stmt = $conn->prepare("SELECT * FROM users");
     $stmt->execute();
     $stmt->setFetchMode(PDO::FETCH_ASSOC);

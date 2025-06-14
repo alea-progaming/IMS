@@ -30,6 +30,7 @@
         <div class="dashboardContent">
           <div class="contentMain">
             <div class="userFormContainer">
+              <input type="hidden" name="table" value="users">
               <form action="database/user-add.php" method="POST" class="appForm">
                 <div class="appFormDiv">
                   <label for="fName">First Name</label>
@@ -47,7 +48,6 @@
                   <label for="pass">Password</label>
                   <input type="password" class="formInput" name="pass" id="pass">
                 </div>
-                <input type="hidden" name="table" value="users">
                 <button type="submit"><i class="fa fa-plus"></i>Add user</button>
               </form>
             </div>
