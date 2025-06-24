@@ -51,6 +51,23 @@
                 <input type="hidden" name="table" value="users">
                 <button type="submit"><i class="fa fa-plus"></i>Add user</button>
               </form>
+              <?php 
+                if (isset($_SESSION['invalidEmail'])) {
+                  // ! Fix invalid email style
+                  echo "<div><p class='responseMessage_error'>" . $_SESSION['invalidEmail'] . "</p></div>";
+                  unset($_SESSION['invalidEmail']); // So it doesn’t stick forever
+                }
+
+                if(isset($_SESSION['response'])) {
+                  $response_msg = $_SESSION['response']['message'];
+                  $is_success = $_SESSION['response']['success' ];
+              ?>
+              <div class="responseMessage">
+                <p class="<?= $is_success ? 'responseMessage_success' : 'responseMessage_error' ?>">
+                  <?= $response_msg ?>  
+                </p>
+              </div>
+              <?php unset($_SESSION['response']); } ?>
             </div>
           </div>
         </div>

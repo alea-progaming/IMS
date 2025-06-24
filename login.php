@@ -1,43 +1,44 @@
 <?php
 session_start();
-if(isset($_SESSION['user'])) header('Location: admin.php');
+if (isset($_SESSION['user'])) {
+    header('Location: admin.php');
+    exit;
+}
 
 $err_msg = '';
 
 if ($_POST) {
-  include("database/connection.php"); // connects using PDO
+    include("database/connection.php");
+
     $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
     $password = $_POST['password'];
-    // $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-      // ! Prepare statement securely
-    $stmt = $conn->prepare("SELECT * FROM users");
-    $stmt->execute();
-    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    // check if the user inputs email and password
+    if ($email && $password) {
+          // ? prepares a statement for execution and return a statement object -- src:php.net
+        $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email LIMIT 1");
+          // ? to safely bind $email to the prep query for the value of email in your database
+        $stmt->bindParam(':email', $email);
+          // ? this is only when the sql is run or executed
+        $stmt->execute();
 
-    $users = $stmt->fetchAll();
+          // ? pull one row from the result set, if the fetch found a user with that email, it will return the associative array of the user
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $user_exist = false;
-    
-    foreach ($users as $user) {
-      $user_pass = $user['password'];
-      if($password == $user_pass) {
-        $user_exist = true;
-        $_SESSION['user'] = $user;
-        break;
-      }
-    }
-    
-    if ($user_exist) {
-      header('Location: admin.php');
-      exit;
+          // ! confirm user's email and verify password. Password hashing is safe protocol ALWAYS 
+        if ($user && password_verify($password, $user['password'])) {
+            $_SESSION['user'] = $user;
+            header('Location: admin.php');
+            exit;
+        } else {
+            $err_msg = "Please make sure that the email and password are correct.";
+        }
     } else {
-      $err_msg = "Please make sure that the email and password are correct.";
-    } 
-      
-
+        $err_msg = "Invalid email or missing password.";
+    }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

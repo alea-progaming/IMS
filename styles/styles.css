@@ -535,3 +535,21 @@ form::after {
   margin-right: 5px;
   font-size: 12px;
 }
+
+.responseMessage_success {
+  text-align: center;
+  margin-top: 1.5rem;
+  background: #c5e2c5;
+  padding: 1rem 0;
+  font-weight: 300;
+  color: #487e48;
+}
+
+.responseMessage_error {
+  text-align: center;
+  margin-top: 1.5rem;
+  background: #e2c5c5;
+  padding: 1rem 0;
+  font-weight: 300;
+  color: #7e4848;
+}
