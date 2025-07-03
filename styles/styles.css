@@ -612,3 +612,15 @@ table td {
 table tr:nth-child(even) {
   background-color: #f3f3f3;
 }
+
+.userCount {
+  text-transform: uppercase;
+  color: #1053e4;
+  padding-top: 8px;
+  text-align: right;
+  font-weight: 500;
+}
+
+.section_content .users a {
+  color: #1f2a40;
+}

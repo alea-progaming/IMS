@@ -90,6 +90,7 @@
                         <th>Email</th>
                         <th>Created at</th>
                         <th>Updated at</th>
+                        <th>Actions</th>
                       </tr>
                       <tbody>
                         <?php foreach($users as $index => $user) { ?>
@@ -100,10 +101,15 @@
                           <td><?= $user['email'] ?></td>
                           <td><?= date('M d, Y @ H:i:s', strtotime($user['created_at'])); ?></td>
                           <td><?= date('M d, Y @ H:i:s', strtotime($user['updated_at'])); ?></td>
+                          <td>
+                            <a href="#"><i class="fa fa-pencil"></i> Edit</a>
+                            <a href="#" class="delUser" data-userid="<?= $user['id'] ?>" data-fname="<?= $user['first_name'] ?>" data-lname="<?= $user['last_name'] ?>"><i class="fa fa-trash"></i> Delete</a>
+                          </td>
                         </tr>
                         <?php } ?>
                       </tbody>
                     </table>
+                    <p class="userCount"><?= count($users) ?> Users</p>
                   </div>
                 </div>
               </div>
@@ -115,5 +121,55 @@
       </div>
     </div>
     <script src="js/sidebarToggle.js"></script>
+    <script>
+      function script() {
+        this.initialize = function() {
+          this.registerEvents(); // this will hold the events that the current page will have
+        },
+        this.registerEvents = function() {
+          document.addEventListener('click', function(event) {
+            targetElement = event.target;
+            classList = targetElement.classList;
+            // console.log(classList);
+            
+              if(classList.contains('delUser')) {
+                event.preventDefault();
+                userid = targetElement.dataset.userid;
+                lname = targetElement.dataset.lname;
+                fname = targetElement.dataset.fname;
+                fullName = fname + ' ' + lname;
+                // console.log(userid);
+
+                if(window.confirm("Are you sure you want to delete " + fullName + "?")) {
+                  fetch('database/delete-user.php', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams({
+                      user_id: userid
+                    })
+                  })
+                  .then(response => {
+                    if(!response.ok) throw new Error("Network error!");
+                    return response.text();
+                  })
+                  .then(data => {
+                    console.log("Server responded with: ", data);
+                  })
+                  .catch(error => {
+                    console.error("There was a problem: ", error);
+                  })
+                } else {
+                  console.log("Do not delete user.");
+                }
+              }
+            })
+        }
+      }
+
+      var script = new script;
+      script.initialize();
+    </script>
   </body>
 </html>
