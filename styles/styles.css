@@ -460,7 +460,7 @@ footer > .homepageContainer a:hover {
 
 .contentMain {
   background: #fff;
-  max-height: 900px;
+  /* max-height: 900px; */
   height: 100%;
   width: 100%;
   border-radius: 10px;
@@ -490,8 +490,8 @@ form::after {
   border: 1px solid #bebebe;
   border-radius: 6px;
   background: #f4f4f4;
-  width: 50%;
-  margin: 0 auto;
+  width: 90%;
+  margin: auto;
   padding: 1rem 1rem;
   font-size: 18px;
 }
@@ -552,4 +552,63 @@ form::after {
   padding: 1rem 0;
   font-weight: 300;
   color: #7e4848;
+}
+
+.contentMain .row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 4px;
+}
+
+.contentMain .row .col {
+  padding: 0 10px;
+}
+
+.col-5 {
+  flex: 2;
+}
+.col-7 {
+  flex: 3;
+}
+
+.col .section_header {
+  font-size: 24px;
+  color: #1053e4;
+  border-bottom: 1px solid #1053e4;
+  padding: 10px;
+  border-left: 4px solid #1053e4;
+}
+
+.col h1 i {
+  padding-right: 4px;
+}
+
+table {
+  width: 100%;
+}
+
+.users table,
+th,
+td {
+  border: 1px solid #cacaca;
+  border-collapse: collapse;
+  margin: 0 auto;
+  margin-top: 3rem;
+}
+
+table th {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 4px 6px;
+  color: #4a4a4a;
+}
+
+table td {
+  font-size: 12px;
+  padding: 4px 6px;
+}
+
+table tr:nth-child(even) {
+  background-color: #f3f3f3;
 }
