@@ -35,7 +35,7 @@
               <div class="col col-5">
                 <h1 class="section_header"><i class="fa fa-plus"></i>Create User</h1>
                 <div class="userFormContainer">
-                  <form action="database/user-add.php" method="POST" class="appForm">
+                  <form action="database/add-user.php" method="POST" class="appForm">
                 <div class="appFormDiv">
                   <label for="fName">First Name</label>
                   <input type="text" class="formInput" name="fName" id="fName">
@@ -85,8 +85,8 @@
                     <table>
                       <tr>
                         <th>#</th>
-                        <th>Last Name</th>
                         <th>First Name</th>
+                        <th>Last Name</th>
                         <th>Email</th>
                         <th>Created at</th>
                         <th>Updated at</th>
@@ -96,8 +96,8 @@
                         <?php foreach($users as $index => $user) { ?>
                         <tr>
                           <td><?= $index + 1 ?></td>
-                          <td><?= $user['last_name'] ?></td>
                           <td><?= $user['first_name'] ?></td>
+                          <td><?= $user['last_name'] ?></td>
                           <td><?= $user['email'] ?></td>
                           <td><?= date('M d, Y @ H:i:s', strtotime($user['created_at'])); ?></td>
                           <td><?= date('M d, Y @ H:i:s', strtotime($user['updated_at'])); ?></td>
@@ -144,22 +144,28 @@
                   fetch('database/delete-user.php', {
                     method: 'POST',
                     headers: {
-                      'Content-Type': 'application/x-www-form-urlencoded',
+                      'Content-Type': 'application/x-www-form-urlencoded'
                     },
                     body: new URLSearchParams({
-                      user_id: userid
+                      user_id: userid,
+                      l_name: lname,
+                      f_name: fname,
                     })
                   })
                   .then(response => {
                     if(!response.ok) throw new Error("Network error!");
-                    return response.text();
+                    return response.json();
                   })
                   .then(data => {
-                    console.log("Server responded with: ", data);
+                    if(data.success) {
+                          if(window.confirm(data.message)) {
+                            location.reload();
+                          }
+                        } else window.confirm(data.message)
                   })
                   .catch(error => {
                     console.error("There was a problem: ", error);
-                  })
+                  });
                 } else {
                   console.log("Do not delete user.");
                 }
