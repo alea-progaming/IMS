@@ -1,7 +1,7 @@
 <?php 
   session_start();
 
-  if(!isset($_SESSION['user'])) header('Location: ../'); 
+  if(!isset($_SESSION['user'])) header('Location: ./'); 
   $_SESSION['table'] = 'users'; // * turns out i actually forgot to put this here
   $user = $_SESSION['user'];
   $users = include('database/show-users.php');
