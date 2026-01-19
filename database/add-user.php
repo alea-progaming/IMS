@@ -13,9 +13,9 @@ session_start();
       $_SESSION['shortPass'] = "Password should be more than 8 characters.";
       header('location: ../users.php');
       exit;
-    } else {
-      $password = $_POST['pass'];
     }
+
+    $password = $_POST['pass'];
     $encrypted = password_hash($password, PASSWORD_DEFAULT);
   }
   
@@ -31,7 +31,7 @@ session_start();
       'first_name' => $first_name, 
       'last_name' => $last_name, 
       'email' => $email, 
-      'encrypted' => $encrypted]);
+      'password' => $encrypted]);
 
       $response = [
         'success' => true,

@@ -10,20 +10,30 @@ $err_msg = '';
 if ($_POST) {
     include("database/connection.php");
 
-    $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+    $email = $_POST['email'];
     $password = $_POST['password'];
 
     // check if the user inputs email and password
     if ($email && $password) {
           // ? prepares a statement for execution and return a statement object -- src:php.net
-        $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email LIMIT 1");
+        $stmt = $conn->prepare("SELECT * FROM users where email = :email LIMIT 1");
           // ? to safely bind $email to the prep query for the value of email in your database
         $stmt->bindParam(':email', $email);
           // ? this is only when the sql is run or executed
         $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
           // ? pull one row from the result set, if the fetch found a user with that email, it will return the associative array of the user
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Add debugging
+echo "User found: ";
+var_dump($user);
+echo "<br>Password from form: " . $password;
+echo "<br>Hashed password from DB: " . ($user ? $user['password'] : 'No user found');
+echo "<br>Password verify result: ";
+var_dump(password_verify($password, $user['password']));
+exit; // Stop here to see the output
 
           // ! confirm user's email and verify password. Password hashing is safe protocol ALWAYS 
         if ($user && password_verify($password, $user['password'])) {
