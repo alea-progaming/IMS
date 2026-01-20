@@ -3,7 +3,6 @@
 
   if(!isset($_SESSION['user'])) header('Location: ./'); 
   $user = $_SESSION['user'];
-  var_dump($user);
 
 ?>
 

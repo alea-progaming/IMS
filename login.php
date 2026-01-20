@@ -25,16 +25,6 @@ if ($_POST) {
 
           // ? pull one row from the result set, if the fetch found a user with that email, it will return the associative array of the user
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        // Add debugging
-echo "User found: ";
-var_dump($user);
-echo "<br>Password from form: " . $password;
-echo "<br>Hashed password from DB: " . ($user ? $user['password'] : 'No user found');
-echo "<br>Password verify result: ";
-var_dump(password_verify($password, $user['password']));
-exit; // Stop here to see the output
-
           // ! confirm user's email and verify password. Password hashing is safe protocol ALWAYS 
         if ($user && password_verify($password, $user['password'])) {
             $_SESSION['user'] = $user;
