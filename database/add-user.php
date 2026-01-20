@@ -25,7 +25,7 @@ session_start();
   // only execute the try block if the user entered a valid email
   if($email) {
     try {
-    $insert_user = "INSERT INTO $table_name(first_name, last_name, email, password, created_at, updated_at) VALUES (:first_name, :last_name, :email, :password, NOW(), NOW())";
+    $insert_user = "INSERT INTO users (first_name, last_name, email, password, created_at, updated_at) VALUES (:first_name, :last_name, :email, :password, NOW(), NOW())";
     $stmt = $conn->prepare($insert_user);
     $stmt->execute([
       'first_name' => $first_name, 

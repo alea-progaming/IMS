@@ -2,11 +2,8 @@
   session_start();
 
   if(!isset($_SESSION['user'])) header('Location: ./'); 
-  $_SESSION['table'] = 'users'; // * turns out i actually forgot to put this here
   $user = $_SESSION['user'];
   $users = include('database/show-users.php');
-    // var_dump($users);
-    // die;
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +49,6 @@
                   <label for="pass">Password</label>
                   <input type="password" class="formInput" name="pass" id="pass">
                 </div>
-                <input type="hidden" name="table" value="users">
                 <button type="submit"><i class="fa fa-plus"></i>Add user</button>
                 </form>
                   <?php 

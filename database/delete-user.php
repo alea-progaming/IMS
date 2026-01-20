@@ -8,8 +8,6 @@
   // Delete user
   try {
     $delete_user = "DELETE FROM users WHERE id={$user_id}";
-    // var_dump($insert_user);
-    // die;
     $conn->exec($delete_user);
 
       echo json_encode([
@@ -17,7 +15,7 @@
         'message' => $first_name . ' ' . $last_name . ' is successfully deleted.'
       ]);
     } catch (PDOException $e) {
-      echo json_decode([
+      echo json_encode([
       'success' => false,
       'message' => 'There is an error while processing your request.'
       ]);
