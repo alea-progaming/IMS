@@ -2,13 +2,14 @@
   include('connection.php');
   $data = $_POST;
   $user_id = (int) $data['user_id'];
-  $first_name = $data['f_name'];
-  $last_name = $data['l_name'];
+  $first_name = $data['first_name'];
+  $last_name = $data['last_name'];
   
   // Delete user
   try {
-    $delete_user = "DELETE FROM users WHERE id={$user_id}";
-    $conn->exec($delete_user);
+    $delete_user = "DELETE FROM users WHERE id=?";
+    $stmt = $conn->prepare($delete_user);
+    $stmt->execute([$user_id]);
 
       echo json_encode([
         'success' => true,

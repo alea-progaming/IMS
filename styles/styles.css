@@ -10,7 +10,8 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: Ubuntu, Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family:
+    Ubuntu, Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
 /* LOGIN */
@@ -554,25 +555,25 @@ form::after {
   color: #7e4848;
 }
 
-.contentMain .row {
+.contentMain .user-row {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   gap: 4px;
 }
 
-.contentMain .row .col {
+.contentMain .user-row .user-col {
   padding: 0 10px;
 }
 
-.col-5 {
+.user-col-5 {
   flex: 2;
 }
-.col-7 {
+.user-col-7 {
   flex: 3;
 }
 
-.col .section_header {
+.user-col .section_header {
   font-size: 24px;
   color: #1053e4;
   border-bottom: 1px solid #1053e4;
@@ -580,7 +581,7 @@ form::after {
   border-left: 4px solid #1053e4;
 }
 
-.col h1 i {
+.user-col h1 i {
   padding-right: 4px;
 }
 
